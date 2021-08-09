@@ -1,0 +1,105 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:actionButtonStyle">@style/MenuItemStyle</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Custom white application theme. -->
+    <style name="AppWhiteTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
+    </style>
+
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- item name="android:windowFullscreen">true</item -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">#ffffff</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- option menu 간격 줄이기 -->
+    <style name="MenuItemStyle" parent="Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">0dip</item>
+        <item name="android:paddingStart">8dip</item>
+        <item name="android:paddingEnd">8dip</item>
+    </style>
+
+    <!-- Store activity theme. -->
+    <style name="StoreAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item -->
+    </style>
+
+    <!-- scroll 되기 전 text color -->
+    <style name="CollapsingToolbar.TitleText" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">@color/transparency</item>
+    </style>
+
+    <!-- scroll 된 후 text color -->
+    <style name="Toolbar.TitleText" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TabItemText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <!-- Review create activity theme. -->
+    <style name="ReviewAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Review modify activity theme. -->
+    <style name="ReviewAppTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:actionMenuTextColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- Bottom dialog theme -->
+    <style name="DialogTheme">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/goldYellow</item>
+        <item name="colorControlNormal">@color/vlight_gray</item>
+    </style>
+
+    <style name="CheckBox" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/vlight_gray</item>
+    </style>
+</resources>

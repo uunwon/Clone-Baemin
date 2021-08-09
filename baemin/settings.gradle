@@ -1,0 +1,3 @@
+rootProject.name='ClientProejct'
+include ':app'
+include ':tipsLib'

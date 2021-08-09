@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp">
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="17dp"
+            android:layout_marginBottom="25dp"
+            android:text="@string/user_email"
+            android:textSize="20sp"
+            android:backgroundTint="@color/vlight_gray"
+            android:hint="@string/login_email"/>
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="17dp"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="@color/vlight_gray"
+            android:inputType="textPassword"
+            android:textSize="20sp"
+            android:hint="@string/login_password"/>
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:text="@string/login2"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:background="@drawable/btn_background_12"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="@string/find_email"
+                android:textSize="16sp"
+                android:textColor="@color/gray"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                android:background="@color/light_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/find_password"
+                android:textSize="16sp"
+                android:textColor="@color/gray"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingBottom="30dp"
+        android:gravity="bottom"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/facebookButton"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/facebook"
+            android:stateListAnimator="@null"
+            android:background="@drawable/btn_background_02"
+            app:layout_constraintBottom_toTopOf="@id/naverButton"/>
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="95dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintStart_toStartOf="@id/facebookButton"
+            app:layout_constraintTop_toTopOf="@id/facebookButton"
+            app:layout_constraintBottom_toBottomOf="@id/facebookButton"
+            app:tint="@color/blue" />
+
+        <Button
+            android:id="@+id/naverButton"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/naver"
+            android:stateListAnimator="@null"
+            android:background="@drawable/btn_background_02"
+            app:layout_constraintBottom_toTopOf="@id/appleButton"/>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="108dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_naver"
+            app:layout_constraintStart_toStartOf="@id/naverButton"
+            app:layout_constraintTop_toTopOf="@id/naverButton"
+            app:layout_constraintBottom_toBottomOf="@id/naverButton"
+            app:tint="@color/green" />
+
+        <Button
+            android:id="@+id/appleButton"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="@string/apple"
+            android:textAllCaps="false"
+            android:stateListAnimator="@null"
+            android:background="@drawable/btn_background_02"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="103dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_apple"
+            app:layout_constraintStart_toStartOf="@id/appleButton"
+            app:layout_constraintTop_toTopOf="@id/appleButton"
+            app:layout_constraintBottom_toBottomOf="@id/appleButton"
+            app:tint="@color/black" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

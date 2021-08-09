@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/title_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/home_address"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_arrow_down"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/btn_background_03" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_background_02"
+            android:gravity="center|start"
+            android:text="@string/search_food"
+            android:drawableStart="@drawable/ic_search_mint"
+            android:paddingStart="20dp"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </FrameLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="17dp"
+        app:columnCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frame_layout"
+        app:rowCount="4"
+        app:useDefaultMargins="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="4">
+
+            <ImageButton
+                android:id="@+id/btn01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_01"
+                android:scaleType="centerCrop"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu1"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn01"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn01"
+                app:layout_constraintLeft_toRightOf="@id/textView01"/>
+
+            <TextView
+                android:id="@+id/textDetailView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail1"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView01"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="4">
+
+            <ImageButton
+                android:id="@+id/btn02"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_02"
+                android:scaleType="centerInside"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu2"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn02"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView03"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="57dp"
+                android:src="@drawable/baemin_one"
+                app:layout_constraintTop_toTopOf="@id/btn02"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn02"
+                app:layout_constraintLeft_toRightOf="@id/imageView03"/>
+
+            <TextView
+                android:id="@+id/textDetailView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail2"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView02"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="2.5"
+            app:layout_columnSpan="2">
+
+            <ImageButton
+                android:id="@+id/btn03"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_03"
+                android:scaleType="centerCrop"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu3"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn03"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn03"
+                app:layout_constraintLeft_toRightOf="@id/textView03"/>
+
+            <TextView
+                android:id="@+id/textDetailView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail3"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView03"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="3">
+
+            <ImageButton
+                android:id="@+id/btn04"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_04"
+                android:scaleType="centerCrop"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu4"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn04"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn04"
+                app:layout_constraintLeft_toRightOf="@id/textView04"/>
+
+            <TextView
+                android:id="@+id/textDetailView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail4"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView04"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="3">
+
+            <ImageButton
+                android:id="@+id/btn05"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_05"
+                android:scaleType="centerCrop"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu5"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn05"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn05"
+                app:layout_constraintLeft_toRightOf="@id/textView05"/>
+
+            <TextView
+                android:id="@+id/textDetailView05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail5"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView05"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="3">
+
+            <ImageButton
+                android:id="@+id/btn06"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_06"
+                android:scaleType="centerCrop"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu6"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn06"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn06"
+                app:layout_constraintLeft_toRightOf="@id/textView06"/>
+
+            <TextView
+                android:id="@+id/textDetailView06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail6"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView06"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="3">
+
+            <ImageButton
+                android:id="@+id/btn07"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_background_04"
+                android:src="@drawable/baemin_menu_07"
+                android:scaleType="centerCrop"
+                app:layout_gravity="fill" />
+
+            <TextView
+                android:id="@+id/textView07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menu7"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/onemobile_pop"
+                app:layout_constraintTop_toTopOf="@id/btn07"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintTop_toTopOf="@id/btn07"
+                app:layout_constraintLeft_toRightOf="@id/textView07"/>
+
+            <TextView
+                android:id="@+id/textDetailView07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="23dp"
+                android:text="@string/menuDetail7"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/textView07"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

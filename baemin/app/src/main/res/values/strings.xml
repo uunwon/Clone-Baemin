@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">배달의민족</string>
+
+    <string name="alarm">알림센터</string>
+    <string name="my_baemin">My배민</string>
+    <string name="my_page">내 정보 수정</string>
+    <string name="save">저장</string>
+    <string name="add">추가</string>
+    <string name="review_page">리뷰관리</string>
+    <string name="review_modify_page">리뷰 수정하기</string>
+    <string name="review_read_page">리뷰 상세보기</string>
+
+    <string name="blank">&#160;</string>
+
+    <string name="home_address">서울 마포구 월드컵···&#160;</string>
+    <string name="des_address">지번, 도로명, 건물명을 \n입력하세요</string>
+    <string name="des_address2">&#160;&#160;&#160;예) 배민동12-3 또는 배민아파트</string>
+    <string name="des_address3">⚙ 현 위치로 주소 설정</string>
+    <string name="des_address4">최근 주소</string>
+    <string name="des_address5">마포구 연남동 568-26 연남토마</string>
+    <string name="des_address6">월드컵북로6길 61 연남토마 지하 1층 연구실</string>
+
+    <string name="search_food">&#160;&#160;찾아라! 맛있는 음식과 맛집</string>
+
+    <string name="menu1">배달</string>
+    <string name="menu2">배민</string>
+    <string name="menu3">포장</string>
+    <string name="menu4">B마트</string>
+    <string name="menu5">쇼핑라이브</string>
+    <string name="menu6">선물하기</string>
+    <string name="menu7">전국별미</string>
+
+    <string name="menuDetail1">세상은 넓고\n맛집은 많다</string>
+    <string name="menuDetail2">번쩍배달이 배민1으로\n새로워졌어요!</string>
+    <string name="menuDetail3">가까운 가게는 직접 가지러 가지요</string>
+    <string name="menuDetail4">장보기도\n즉시배달</string>
+    <string name="menuDetail5">맛있는\n초특가 라이브</string>
+    <string name="menuDetail6">배민 상품권\n선물해 보세요</string>
+    <string name="menuDetail7">동네 맛집을\n넘어서</string>
+
+    <string name="rank">고마운분,</string>
+    <string name="rank2">고마운분</string>
+    <string name="nickName">이름</string>
+    <string name="rank_pre">등급별 혜택</string>
+
+    <string name="my_menu1">포인트</string>
+    <string name="my_menu2">쿠폰함</string>
+    <string name="my_menu3">선물함</string>
+    <string name="my_menu4">찜</string>
+    <string name="my_menu5">주문내역</string>
+    <string name="my_menu6">리뷰관리</string>
+
+    <string name="my_menu7">배민페이 등록</string>
+    <string name="my_menu8">배민페이로 결제하면 최대 5.5% 배민포인트가 적립됩니다!</string>
+    <string name="my_menu9">가족계정 관리</string>
+    <string name="my_menu10">결제수단을 공유해 우리 가족의 끼니를 챙겨주세요.</string>
+
+    <string name="email">이메일</string>
+    <string name="ic_email">\@</string>
+    <string name="user_email">abc7017@gmail.com</string>
+    <string name="password">비밀번호</string>
+    <string name="password_hint">10-20자 이내</string>
+    <string name="phone">휴대폰 인증</string>
+    <string name="phone_detail">주문정보의 연락처로 사용됩니다</string>
+    <string name="user_phone1">010</string>
+    <string name="user_phone2">2642</string>
+    <string name="user_phone3">3813</string>
+    <string name="marketing">마케팅 정보 수신 동의</string>
+    <string name="marketing_detail">이벤트 및 혜택에 대한 다양한 정보를 받으실 수 있어요.</string>
+    <string name="mail">메일 수신동의</string>
+    <string name="sms">SMS 수신동의</string>
+
+    <string name="change">변경</string>
+    <string name="re_certification">재인증</string>
+    <string name="logout"><u>로그아웃</u>&#160;&#160;|&#160;&#160;</string>
+    <string name="withdrawal"><u>회원탈퇴</u></string>
+    <string name="close">닫기</string>
+
+    <string name="ad_main">배민 첫 화면이\n개편됩니다</string>
+    <string name="ad_sub"><u>이런게 더 좋아져요!</u></string>
+
+    <string name="profile_get">사진 가져오기</string>
+    <string name="profile_camera">사진촬영</string>
+    <string name="profile_gallery">사진 앨범에서 선택</string>
+
+    <string name="bargin">오늘의 할인</string>
+    <string name="all">전체 보기</string>
+
+    <string name="storeName">크리스피도넛</string>
+    <string name="storeName2">크리스피도넛&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="starRating">4.9</string>
+    <string name="review">최근리뷰</string>
+    <string name="reviewCount">1,048</string>
+    <string name="ownerComment">최근사장님댓글</string>
+    <string name="ownerCommentCount">1,045</string>
+    <string name="call">전화</string>
+    <string name="love">찜 1,323</string>
+    <string name="share">공유</string>
+    <string name="coupon">1,500원 쿠폰 받기</string>
+
+    <string name="delivery_call">배달주문</string>
+    <string name="pack_call">포장/방문주문</string>
+
+    <string name="least_price">최소주문 금액</string>
+    <string name="least_price_detail">11,000원</string>
+    <string name="pay_method">결제방법</string>
+    <string name="pay_method_detail">바로결제, 만나서결제</string>
+    <string name="delivery_time">배달시간</string>
+    <string name="delivery_time_detail">49~64분 소요 예상</string>
+    <string name="delivery_tip">배달팁</string>
+    <string name="delivery_tip_detail">0원 ~ 2,000원</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="call_number">Call 050375044007</string>
+
+    <string name="login">로그인해주세요</string>
+    <string name="login2">로그인</string>
+    <string name="login_email">아이디 또는 이메일</string>
+    <string name="login_password">비밀번호</string>
+    <string name="find_email">아이디 찾기</string>
+    <string name="find_password">비밀번호 찾기</string>
+
+    <string name="review_menu1">배달ㆍ포장</string>
+    <string name="my_review_count">내가 쓴 총 리뷰</string>
+    <string name="my_review_count2">19</string>
+    <string name="my_review_count3">개</string>
+    <string name="review_add">리뷰 작성 안내</string>
+    <string name="review_modify">리뷰 수정 안내</string>
+
+    <string name="review_title">크리스피크림도넛</string>
+    <string name="review_date">2개월 전</string>
+    <string name="review_content">어제부터 도넛이 먹고 싶어서\n일어나자마자 시켰는데\n역시 맛있네요 👍</string>
+    <string name="owner">사장님</string>
+    <string name="owner_date">1개월 전</string>
+    <string name="owner_content">이름님, 감사합니다 💘💘</string>
+
+    <string name="delete">삭제</string>
+    <string name="modify">수정</string>
+    <string name="ok">확인</string>
+    <string name="complete">완료</string>
+
+    <string name="rating">별점</string>
+    <string name="menu">메뉴</string>
+    <string name="info">정보</string>
+    <string name="review2">리뷰</string>
+
+    <string name="review_delete_dialog">리뷰를 삭제하시면 재작성이 불가능합니다.\n삭제하시겠습니까?</string>
+    <string name="store_name">상호명</string>
+    <string name="review_date2">주문 날짜</string>
+    <string name="review_content2">리뷰를 작성해주세요.</string>
+    <string name="picture">사진 0/5</string>
+    <string name="owner_only">사장님에게만 보이게</string>
+    <string name="owner_only2">사장님만 보이는 리뷰</string>
+
+    <string name="review_date3">주문일</string>
+
+    <string name="review_modify_info">솔직하게 작성하신 리뷰는 주문을 고민하는 분들께 큰 도움이 됩니다.\n\n하지만 허위 리뷰나 명예훼손,
+    욕설, 비방글 등 선량한 업주나 제3자의 권리를 침해하는 게시물은 서비스 이용약관이나 관련 법률에 따라 제재를 받을 수 있습니다.</string>
+
+    <string name="menu10">고추콰삭블랙라벨 8조각</string>
+    <string name="menu11">23,500원</string>
+
+    <string name="facebook">페이스북으로 로그인</string>
+    <string name="naver">네이버로 로그인</string>
+    <string name="apple">Apple로 로그인</string>
+</resources>
