@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var dbHelper : DBHelper
-    private var status : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("생명주기", "Main onCreate")
@@ -91,8 +90,6 @@ class MainActivity : AppCompatActivity() {
             val menuTipView = DataBindingUtil.inflate<ViewDataBinding>(inflater, R.layout.item_tooltip, null, false).getRoot() as TextView
             val menuTipParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
 
-            // menuTipParams.marginStart = resources.getDimensionPixelSize(R.dimen.actionbar_icon_padding)
-            // menuTipParams.marginEnd = resources.getDimensionPixelSize(R.dimen.actionbar_icon_padding)
             menuTipView.layoutParams = menuTipParams
 
             menuTipView.background = ContextCompat.getDrawable(this, R.drawable.shape_tooltip_window_purple)
@@ -145,19 +142,6 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.d("생명주기", "Main onStart")
-
-        // 사용자 로그인 상태 가져옴
-        // 읽기 모드로 데이터 저장소 가져옴
-        val db = dbHelper.readableDatabase
-        val cursor = db.rawQuery("select `status` from MemberDB where email='abc7017@gmail.com'", null)
-
-        while(cursor.moveToNext()) {
-            status = cursor.getString(0)
-        }
-        cursor.close()
-        db.close()
-
-        Log.d("데이터베이스", "상태 읽어오기 하는중 상태는 ? $status")
     }
 
     override fun onResume() {

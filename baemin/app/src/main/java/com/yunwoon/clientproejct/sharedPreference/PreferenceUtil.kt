@@ -24,6 +24,10 @@ class PreferenceUtil(context: Context) {
         prefs.edit().putInt(key, str).apply()
     }
 
+    fun remove(key:String) {
+        editor.remove(key).apply()
+    }
+
     fun clear() {
         editor.clear().apply()
     }
