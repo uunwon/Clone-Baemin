@@ -14,6 +14,7 @@ import com.yunwoon.clientproejct.cleanStore.RetrofitCleanStoreClient
 import com.yunwoon.clientproejct.cleanStore.models.CleanStoreResponse
 import com.yunwoon.clientproejct.databinding.ActivityCleanstoreBinding
 import com.yunwoon.clientproejct.databinding.ItemCleanstoreBinding
+import com.yunwoon.clientproejct.sharedPreference.MyApplication
 import retrofit2.Response
 
 data class CleanStoreItem(val name:String, val ownerName:String, val address:String, val category:String, val image:Int)
@@ -39,6 +40,8 @@ class CleanStoreActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 생성
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow) // 뒤로가기 버튼 아이콘 커스텀
+
+        binding.titleAddress.text = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마")
 
         binding.cleanStoreListView.isNestedScrollingEnabled = true
 

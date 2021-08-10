@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.yunwoon.clientproejct.databinding.ActivityDeliveryBinding
+import com.yunwoon.clientproejct.sharedPreference.MyApplication
 
 class DeliveryActivity : AppCompatActivity() {
 
@@ -23,6 +24,8 @@ class DeliveryActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 생성
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow) // 뒤로가기 버튼 아이콘 커스텀
+
+        binding.titleAddress.text = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마")
 
         binding.categoryImageView.setOnClickListener {
             this.startActivity(Intent(this, StoreActivity::class.java))

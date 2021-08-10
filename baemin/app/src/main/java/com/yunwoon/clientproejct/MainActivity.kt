@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         dbHelper = DBHelper(this, "MemberDB", null, 1)
 
         // setSqlite()
-        MyApplication.prefs.clear()
+        // MyApplication.prefs.clear()
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowCustomEnabled(true)
@@ -163,6 +163,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.d("생명주기", "Main onResume")
+
+        binding.titleAddress.text = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마")
     }
 
     override fun onPause() {

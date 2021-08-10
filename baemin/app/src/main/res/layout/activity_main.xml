@@ -23,10 +23,12 @@
 
         <TextView
             android:id="@+id/title_address"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/home_address"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="경기도 성남시 분당구 판교로 20 (판교동,판교원마을)"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"

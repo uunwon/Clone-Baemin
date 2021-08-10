@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/parcelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="판교동 512-1"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/roadTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="경기도 성남시 분당구 판교로 182-6 (판교동)"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/parcelTextView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/buttonTextView"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="7dp"
+        android:gravity="center"
+        android:text="우편번호"
+        android:background="@drawable/btn_background_02"
+        app:layout_constraintTop_toBottomOf="@id/roadTextView"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/zipcodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="10dp"
+        android:text="13474"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/buttonTextView"
+        app:layout_constraintTop_toBottomOf="@id/roadTextView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

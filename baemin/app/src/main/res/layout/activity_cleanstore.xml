@@ -27,15 +27,17 @@
 
         <TextView
             android:id="@+id/title_address"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/home_address"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="@string/des_address5"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             app:drawableTint="@color/black"
-            app:drawableEndCompat="@drawable/ic_arrow_down" />
+            android:drawableEnd="@drawable/ic_arrow_down"/>
 
     </androidx.appcompat.widget.Toolbar>
 

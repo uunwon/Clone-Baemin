@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -39,15 +40,18 @@
             android:layout_weight="1"
             android:layout_marginBottom="10dp">
             <EditText
+                android:id="@+id/addressEditText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
+                android:paddingStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/btn_background_01"
                 android:gravity="start|center"
                 android:hint="@string/des_address2"
                 android:textSize="19sp" />
             <ImageButton
+                android:id="@+id/addressSearchImageButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -98,27 +102,33 @@
                         android:layout_weight="6"
                         android:orientation="vertical">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/roadTextView"
+                            android:layout_width="280dp"
                             android:layout_height="0dp"
+                            android:singleLine="true"
                             android:layout_weight="1"
                             android:layout_marginBottom="5dp"
+                            android:ellipsize="end"
                             android:text="@string/des_address5"
                             android:textSize="20sp"
                             android:textColor="@color/black"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1">
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginEnd="7dp"
-                                android:src="@drawable/ic_road"/>
                             <TextView
-                                android:layout_width="0dp"
+                                android:layout_width="63dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="7dp"
+                                android:gravity="center"
+                                android:text="지번주소"
+                                android:background="@drawable/btn_background_02" />
+
+                            <TextView
+                                android:id="@+id/parcelTextView"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="5.5"
                                 android:text="@string/des_address6"
                                 android:textSize="18sp"
                                 android:textColor="@color/gray"
@@ -131,8 +141,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:src="@drawable/ic_close"
-                        android:tint="@color/light_gray"
-                        android:background="@color/transparency"/>
+                        android:background="@color/transparency"
+                        app:tint="@color/light_gray" />
                 </LinearLayout>
             </LinearLayout>
 

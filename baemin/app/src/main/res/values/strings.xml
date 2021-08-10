@@ -9,16 +9,18 @@
     <string name="review_page">리뷰관리</string>
     <string name="review_modify_page">리뷰 수정하기</string>
     <string name="review_read_page">리뷰 상세보기</string>
+    <string name="search_address">배달 받을 주소</string>
 
     <string name="blank">&#160;</string>
 
     <string name="home_address">서울 마포구 월드컵···&#160;</string>
     <string name="des_address">지번, 도로명, 건물명을 \n입력하세요</string>
-    <string name="des_address2">&#160;&#160;&#160;예) 배민동12-3 또는 배민아파트</string>
+    <string name="des_address2">예) 배민동12-3 또는 배민아파트</string>
     <string name="des_address3">⚙ 현 위치로 주소 설정</string>
     <string name="des_address4">최근 주소</string>
-    <string name="des_address5">마포구 연남동 568-26 연남토마</string>
+    <string name="des_address5">서울시 마포구 연남동 568-26 연남토마</string>
     <string name="des_address6">월드컵북로6길 61 연남토마 지하 1층 연구실</string>
+    <string name="des_address7">예) 배민동12-3 또는 배민아파트</string>
 
     <string name="search_food">&#160;&#160;찾아라! 맛있는 음식과 맛집</string>
 

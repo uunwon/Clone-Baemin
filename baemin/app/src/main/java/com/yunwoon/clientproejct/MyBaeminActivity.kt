@@ -37,7 +37,8 @@ class MyBaeminActivity : AppCompatActivity() {
         super.onRestart()
         Log.d("생명주기", "My Baemin onRestart")
 
-        MyApplication.prefs.clear()
+        MyApplication.prefs.putString("nickName", "")
+        MyApplication.prefs.putString("password", "")
     }
 
     override fun onStart() {
