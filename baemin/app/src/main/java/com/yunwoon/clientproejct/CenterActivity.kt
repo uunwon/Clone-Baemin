@@ -10,6 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
 import com.yunwoon.clientproejct.center.CenterInterface
 import com.yunwoon.clientproejct.center.RetrofitCenterClient
 import com.yunwoon.clientproejct.center.models.CenterResponse
@@ -21,12 +26,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 data class CenterItem(val name:String, val address:String, val lat:String, val lng:String)
-class CenterActivity : AppCompatActivity() {
+
+class CenterActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityCenterBinding
     private lateinit var addressText: String
 
     private val centerArrayList = ArrayList<CenterItem>()
     private lateinit var centerAdapter: CenterAdapter
+
     private val key = "BDjQIk0hhjDzdEDbxWaxssyEkO+eo/VsCAO+LUrVKBsO+8QSXAZ0PrEZvnNjFiL/oin4KcihJhQtj2TP2nWl1w=="
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,20 +50,11 @@ class CenterActivity : AppCompatActivity() {
 
         binding.centerListView.isNestedScrollingEnabled = true
 
-        getCenterData()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        binding.addressTextView.text = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마")
-        val splitArray = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마").split(" ")
-        addressText = splitArray[0] // 도 단위로 받아옴
-        Toast.makeText(applicationContext, "$addressText 여기요", Toast.LENGTH_SHORT).show()
+        getCenterData(savedInstanceState)
     }
 
     // API 호출 메서드
-    private fun getCenterData() {
+    private fun getCenterData(savedInstanceState: Bundle?) {
         val centerInterface = RetrofitCenterClient.sRetrofit.create(CenterInterface::class.java)
         centerInterface.getCenter(1,284, key).enqueue(object : Callback<CenterResponse> {
             @SuppressLint("SetTextI18n")
@@ -78,7 +76,8 @@ class CenterActivity : AppCompatActivity() {
                         i++
                     }
 
-                    centerAdapter = CenterAdapter(centerArrayList, this@CenterActivity)
+                    centerAdapter = CenterAdapter(centerArrayList, this@CenterActivity,
+                        this@CenterActivity, savedInstanceState)
                     binding.centerListView.adapter = centerAdapter
                 } else {
                     Log.d("CenterActivity", "getCenterData - onResponse : Error code ${response}")
@@ -91,9 +90,12 @@ class CenterActivity : AppCompatActivity() {
         })
     }
 
-    class CenterAdapter(private val centerArrayList: ArrayList<CenterItem>, context: Context) : BaseAdapter() {
+    class CenterAdapter(private val centerArrayList: ArrayList<CenterItem>, context: Context,
+                        private val callback: OnMapReadyCallback, private val savedInstanceState: Bundle?
+    ) : BaseAdapter() {
         private val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         private lateinit var binding: ItemCenterBinding
+
         override fun getCount(): Int = centerArrayList.size
 
         override fun getItem(p0: Int): Any = centerArrayList[p0]
@@ -102,12 +104,30 @@ class CenterActivity : AppCompatActivity() {
 
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
             binding = ItemCenterBinding.inflate(inflater, p2, false)
+            MyApplication.prefs.putInt("p0", p0)
 
             binding.centerNameTextView.text = centerArrayList[p0].name
             binding.centerAddressTextView.text = centerArrayList[p0].address
             binding.indexTextView.text = (p0 + 1).toString()
+            binding.centerMapView.onCreate(savedInstanceState)
+            binding.centerMapView.getMapAsync(callback)
 
             return binding.root
         }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        val p0 = MyApplication.prefs.getInt("p0", 0)
+        val myLocation = LatLng(centerArrayList[p0].lat.toDouble(), centerArrayList[p0].lng.toDouble())
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        binding.addressTextView.text = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마")
+        val splitArray = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마").split(" ")
+        addressText = splitArray[0] // 도 단위로 받아옴
     }
 }

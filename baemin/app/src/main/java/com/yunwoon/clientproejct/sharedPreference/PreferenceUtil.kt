@@ -16,6 +16,14 @@ class PreferenceUtil(context: Context) {
         prefs.edit().putString(key, str).apply()
     }
 
+    fun getInt(key:String, default:Int ): Int {
+        return prefs.getInt(key, default)
+    }
+
+    fun putInt(key:String, str: Int) {
+        prefs.edit().putInt(key, str).apply()
+    }
+
     fun clear() {
         editor.clear().apply()
     }

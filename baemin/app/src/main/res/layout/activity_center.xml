@@ -71,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:dividerHeight="0dp"
+                android:divider="@color/middle_gray"
                 tools:listitem="@layout/item_center"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

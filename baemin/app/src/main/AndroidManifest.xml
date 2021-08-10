@@ -18,6 +18,11 @@
         android:roundIcon="@mipmap/ic_baemin_round"
         android:supportsRtl="true"
         android:theme="@style/AppWhiteTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAdsJQbqUkQ_hdV58z3c0A-7eDfISCPED4" />
+
         <activity
             android:name=".CenterActivity"
             android:theme="@style/AppTheme"
