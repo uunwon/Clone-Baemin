@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         // 코로나 예약접종센터 리스트로 화면 넘어가기
         binding.toolbar.setNavigationOnClickListener {
-            Toast.makeText(applicationContext, "코로나 #가보자고", Toast.LENGTH_SHORT).show()
+            this.startActivity(Intent(this, CenterActivity::class.java))
         }
 
         binding.titleAddress.setOnClickListener {

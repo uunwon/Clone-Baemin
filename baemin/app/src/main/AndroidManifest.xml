@@ -18,7 +18,11 @@
         android:roundIcon="@mipmap/ic_baemin_round"
         android:supportsRtl="true"
         android:theme="@style/AppWhiteTheme">
-        <activity android:name=".SearchAddressActivity"></activity>
+        <activity
+            android:name=".CenterActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".SearchAddressActivity" />
         <activity
             android:name=".CleanStoreActivity"
             android:parentActivityName=".MainActivity" />

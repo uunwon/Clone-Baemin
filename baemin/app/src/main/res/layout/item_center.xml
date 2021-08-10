@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="275dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cleanStoreCardView"
+            android:id="@+id/centerCardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
@@ -28,55 +27,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/storeImageView"
+                <FrameLayout
+                    android:id="@+id/centerFrameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/krispy_kreme"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/storeNameTextView"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/centerNameTextView"
+                    android:layout_width="285dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
-                    android:text="식당 이름"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="코로나19 서울특별시 성동구 예방접종센터"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/storeImageView" />
+                    app:layout_constraintTop_toBottomOf="@id/centerFrameLayout" />
 
                 <TextView
-                    android:id="@+id/storeOwnerTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="20dp"
-                    android:text="채윤원"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toEndOf="@id/storeNameTextView"
-                    app:layout_constraintTop_toBottomOf="@id/storeImageView" />
-
-                <TextView
-                    android:id="@+id/categoryTextView"
-                    android:layout_width="50dp"
+                    android:id="@+id/indexTextView"
+                    android:layout_width="30dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/btn_background_10"
                     android:gravity="center"
-                    android:text="한식"
+                    android:text="1"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/storeImageView" />
+                    app:layout_constraintTop_toBottomOf="@id/centerFrameLayout" />
 
                 <TextView
                     android:id="@+id/addressTextView"
@@ -88,18 +75,18 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/storeNameTextView" />
+                    app:layout_constraintTop_toBottomOf="@id/centerNameTextView" />
 
                 <TextView
-                    android:id="@+id/storeAddressTextView"
+                    android:id="@+id/centerAddressTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="6dp"
                     android:text="인천광역시 서구 봉오재3로 94번길"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/addressTextView"
-                    app:layout_constraintTop_toBottomOf="@id/storeNameTextView" />
+                    app:layout_constraintTop_toBottomOf="@id/centerNameTextView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
