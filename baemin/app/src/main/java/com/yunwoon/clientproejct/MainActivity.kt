@@ -74,8 +74,14 @@ class MainActivity : AppCompatActivity() {
         // val dialog = AddialogFragment()
         // dialog.show(supportFragmentManager, "DialogFragment")
 
+        // 배달 메뉴
         binding.btn01.setOnClickListener {
             this.startActivity(Intent(this, DeliveryActivity::class.java))
+        }
+
+        // 안심식당 메뉴
+        binding.cleanStoreImageButton.setOnClickListener {
+            this.startActivity(Intent(this, CleanStoreActivity::class.java))
         }
     }
 

@@ -8,6 +8,7 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".sharedPreference.MyApplication"
@@ -17,6 +18,10 @@
         android:roundIcon="@mipmap/ic_baemin_round"
         android:supportsRtl="true"
         android:theme="@style/AppWhiteTheme">
+
+        <activity
+            android:name=".CleanStoreActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ReviewReadActivity"
             android:parentActivityName=".ReviewActivity"
@@ -56,6 +61,7 @@
             android:theme="@style/FullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
