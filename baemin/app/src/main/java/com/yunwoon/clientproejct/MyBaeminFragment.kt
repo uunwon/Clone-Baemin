@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nhn.android.naverlogin.OAuthLogin
 import com.yunwoon.clientproejct.databinding.FragmentMyBaeminBinding
+import com.yunwoon.clientproejct.naver.AuthLogin
 import com.yunwoon.clientproejct.sharedPreference.MyApplication
 import com.yunwoon.clientproejct.sqlite.DBHelper
 
@@ -14,6 +16,8 @@ class MyBaeminFragment : Fragment() {
     private var _binding: FragmentMyBaeminBinding? = null
     private val binding get() = _binding!!
     private lateinit var dbHelper : DBHelper
+
+    private lateinit var mOAuthLoginModule : OAuthLogin
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,12 +27,16 @@ class MyBaeminFragment : Fragment() {
         val view = binding.root
 
         dbHelper = DBHelper(context, "MemberDB", null, 1)
+        mOAuthLoginModule = context?.let { AuthLogin.init(it) }!!
 
         binding.linearLayout.setOnClickListener {
             this.startActivity(Intent(activity, MyPageActivity::class.java))
         }
 
-        binding.nickNameTextView.text = getNickName()
+        if(mOAuthLoginModule.getState(context).toString() == "OK")
+            binding.nickNameTextView.text = MyApplication.prefs.getString("name", "이름")
+        else
+            binding.nickNameTextView.text = getNickName()
 
         binding.reviewLinearLayout.setOnClickListener {
             this.startActivity(Intent(activity, ReviewActivity::class.java))

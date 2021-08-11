@@ -194,6 +194,7 @@
             android:orientation="horizontal"
             android:layout_below="@id/phoneTextView">
             <EditText
+                android:id="@+id/mobileEditText1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -205,6 +206,7 @@
                 android:textSize="13sp"
                 android:background="@drawable/btn_background_01"/>
             <EditText
+                android:id="@+id/mobileEditText2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -216,6 +218,7 @@
                 android:textSize="13sp"
                 android:background="@drawable/btn_background_01"/>
             <EditText
+                android:id="@+id/mobileEditText3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

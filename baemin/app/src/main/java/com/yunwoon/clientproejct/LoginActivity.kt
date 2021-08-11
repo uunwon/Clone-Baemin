@@ -1,7 +1,7 @@
 package com.yunwoon.clientproejct
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
-import android.content.Context
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.BaseColumns
@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
+import com.nhn.android.naverlogin.data.OAuthLoginState
 import com.yunwoon.clientproejct.databinding.ActivityLoginBinding
+import com.yunwoon.clientproejct.naver.AuthLogin
+import com.yunwoon.clientproejct.sharedPreference.MyApplication
 import com.yunwoon.clientproejct.sqlite.DBHelper
 import com.yunwoon.clientproejct.sqlite.MemberDB
-import org.json.JSONException
 import org.json.JSONObject
 
 
@@ -22,29 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var dbHelper : DBHelper
 
-    private val mOAuthLoginModule = OAuthLogin.getInstance()
-    private val mOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
-        override fun run(success: Boolean) {
-            Log.d("핸들러 작동 확인" , "OAuthLoginHandler 동작")
-            if (success) {
-                Log.d("핸들러 작동 확인" , "OAuthLoginHandler run 성공")
-                val accessToken: String = mOAuthLoginModule.getAccessToken(applicationContext)
-                val refreshToken: String = mOAuthLoginModule.getRefreshToken(applicationContext)
-                val expiresAt: Long = mOAuthLoginModule.getExpiresAt(applicationContext)
-                val tokenType: String = mOAuthLoginModule.getTokenType(applicationContext)
-
-                RequestApiTask(applicationContext, mOAuthLoginModule).execute()
-            } else {
-                Log.d("핸들러 작동 확인" , "OAuthLoginHandler run 실패")
-                val errorCode: String = mOAuthLoginModule.getLastErrorCode(applicationContext).getCode()
-                val errorDesc: String = mOAuthLoginModule.getLastErrorDesc(applicationContext)
-                Toast.makeText(
-                    applicationContext, "errorCode:" + errorCode
-                            + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
+    private lateinit var mOAuthLoginModule : OAuthLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,13 +32,14 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //  네이버 아이디로 로그인 인스턴스 초기화
+        mOAuthLoginModule = AuthLogin.init(this@LoginActivity)
+        /* mOAuthLoginModule = OAuthLogin.getInstance()
         mOAuthLoginModule.init(
-            this@LoginActivity
-            , R.string.naver_client_id.toString()
-            , R.string.naver_client_secret.toString()
-            , R.string.naver_client_name.toString()
-        )
+             this@LoginActivity
+            ,getString(R.string.naver_client_id)
+            ,getString(R.string.naver_client_secret)
+            ,getString(R.string.naver_client_name)
+        ) */
 
         dbHelper = DBHelper(this, "MemberDB", null, 1)
 
@@ -80,6 +61,16 @@ class LoginActivity : AppCompatActivity() {
 
         binding.naverButton.setOnClickListener {
             naverLogin()
+        }
+    }
+
+    private fun naverLogout() {
+        if(mOAuthLoginModule.getState(this@LoginActivity) == OAuthLoginState.OK) {
+            mOAuthLoginModule.logoutAndDeleteToken(this@LoginActivity)
+            Log.i("로그인_액티비티", "Login Module State : " + mOAuthLoginModule.getState(this@LoginActivity).toString())
+        }
+        else {
+            Log.i("로그인_액티비티", "Login Module State : " + mOAuthLoginModule.getState(this@LoginActivity).toString())
         }
     }
 
@@ -128,7 +119,45 @@ class LoginActivity : AppCompatActivity() {
 
     // 네이버 로그인 구현
     private fun naverLogin() {
-        mOAuthLoginModule.startOauthLoginActivity(this, mOAuthLoginHandler)
+        /* 로그아웃 */
+        // val isSuccessDeleteToken = mOAuthLoginModule.logoutAndDeleteToken(this@LoginActivity)
+        // mOAuthLoginModule.logout(this@LoginActivity)
+
+        if(mOAuthLoginModule.getState(this@LoginActivity) == OAuthLoginState.OK){
+            Log.d("로그인_액티비티", "status don't need login")
+            // RequestApiTask().execute()
+        }else{
+            Log.d("로그인_액티비티", "status need login")
+            mOAuthLoginModule.startOauthLoginActivity(this, @SuppressLint("HandlerLeak")
+            object: OAuthLoginHandler(){
+                override fun run(success: Boolean) {
+                    Log.d("로그인_액티비티", "OAuthLoginHandler run 동작")
+                    if (success) {
+                        Log.d("로그인_액티비티", "success 들어옴")
+                        val accessToken = mOAuthLoginModule.getAccessToken(this@LoginActivity)
+                        val refreshToken = mOAuthLoginModule.getRefreshToken(this@LoginActivity)
+                        val expiresAt = mOAuthLoginModule.getExpiresAt(this@LoginActivity)
+                        val tokenType = mOAuthLoginModule.getTokenType(this@LoginActivity)
+                        Log.i("로그인_액티비티", "Login Access Token : $accessToken")
+                        Log.i("로그인_액티비티", "Login refresh Token : $refreshToken")
+                        Log.i("로그인_액티비티", "Login expiresAt : $expiresAt")
+                        Log.i("로그인_액티비티", "Login Token Type : $tokenType")
+                        Log.i("로그인_액티비티", "Login Module State : " + mOAuthLoginModule.getState(this@LoginActivity).toString())
+
+                        // successLogin()
+                        RequestApiTask().execute()
+                    } else {
+                        val errorCode = mOAuthLoginModule.getLastErrorCode(this@LoginActivity).getCode()
+                        val errorDesc = mOAuthLoginModule.getLastErrorDesc(this@LoginActivity)
+                        Toast.makeText(this@LoginActivity, "errorCode:$errorCode, errorDesc:$errorDesc", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+        }
+    }
+
+    fun successLogin() {
+        finish()
     }
 
     override fun onDestroy() {
@@ -136,36 +165,47 @@ class LoginActivity : AppCompatActivity() {
         Log.d("생명주기", "Login onDestroy")
     }
 
-    class RequestApiTask(private val context: Context, private val mOAuthLoginModule: OAuthLogin) : AsyncTask<Void, Void, String>() {
+    inner class RequestApiTask : AsyncTask<Void, Void, String>() {
 
-        override fun onPreExecute() {
-            super.onPreExecute()
-        }
-
+        // 작업을 시작하면 호출되며, 백그라운드 스레드에서 동장
+        // execute() 메서드로 전달된 인자를 받을 수 있음
         override fun doInBackground(vararg p0: Void?): String {
             // https://openapi.naver.com/v1/nid/me
             // https://apis.naver.com/nidlogin/nid/getHashId_v2.xml
-            Log.d("핸들러 작동 확인" , "RequestApiTask doInBackground 에 들어옴")
             val url = "https://openapi.naver.com/v1/nid/me"
-            val at : String = mOAuthLoginModule.getAccessToken(context)
-            return mOAuthLoginModule.requestApi(context, at, url)
+            val at : String = mOAuthLoginModule.getAccessToken(this@LoginActivity)
+            return mOAuthLoginModule.requestApi(this@LoginActivity, at, url)
         }
 
+        // doInBackground() 메서드가 Result 타입 값을 반환하면 호출되는 메서드
+        // 메인 스레드에서 동작
+        // 작업의 실행결과를 UI 에 업데이트할 수 있음
         override fun onPostExecute(result: String) {
-            Log.d("핸들러 작동 확인" , "RequestApiTask onPostExecute 성공")
-            try{
-                val loginResult = JSONObject(result)
-                if(loginResult.getString("resultcode").equals("00")) {
-                    val response : JSONObject = loginResult.getJSONObject("response")
-                    val id : String = response.getString("id")
-                    val email : String = response.getString("email")
-                    Toast.makeText(context, "id = $id , email = $email", Toast.LENGTH_SHORT).show()
-                }
+            val loginResult = JSONObject(result)
 
-            } catch (e : JSONException) {
-                e.printStackTrace()
+            if(loginResult.getString("resultcode").equals("00")) {
+                val response : JSONObject = loginResult.getJSONObject("response")
+                val name : String = response.getString("name")
+                val email : String = response.getString("email")
+                val mobile : String = response.getString("mobile")
+
+                Log.d("로그인_액티비티", "name = $name, email = $email, phoneNumber = $mobile")
+
+                val splitArray = mobile.split("-")
+                val mobile1 = splitArray[0]
+                val mobile2 = splitArray[1]
+                val mobile3 = splitArray[2]
+
+                MyApplication.prefs.putString("name", name)
+                MyApplication.prefs.putString("email", email)
+                MyApplication.prefs.putString("mobile1", mobile1)
+                MyApplication.prefs.putString("mobile2", mobile2)
+                MyApplication.prefs.putString("mobile3", mobile3)
+
+                successLogin()
+            }  else {
+                Log.d("로그인_액티비티", "RequestApiTask onPostExecute else 처리됨, ${loginResult.getString("resultcode")}")
             }
         }
-
     }
 }

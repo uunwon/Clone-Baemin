@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentTransaction
+import com.nhn.android.naverlogin.OAuthLogin
 import com.yunwoon.clientproejct.databinding.ActivityMyBaeminBinding
+import com.yunwoon.clientproejct.naver.AuthLogin
 import com.yunwoon.clientproejct.sharedPreference.MyApplication
 import com.yunwoon.clientproejct.sharedPreference.PreferenceUtil
 import com.yunwoon.clientproejct.sqlite.DBHelper
@@ -14,6 +16,8 @@ class MyBaeminActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyBaeminBinding
     private lateinit var dbHelper : DBHelper
     private var status : String = ""
+
+    private lateinit var mOAuthLoginModule : OAuthLogin
 
     private val manager = supportFragmentManager
 
@@ -31,6 +35,9 @@ class MyBaeminActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 생성
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)
+
+        mOAuthLoginModule = AuthLogin.init(this@MyBaeminActivity)
+        Log.i("배민_액티비티", "Login Module State : " + mOAuthLoginModule.getState(this@MyBaeminActivity).toString())
     }
 
     override fun onRestart() {
@@ -64,12 +71,12 @@ class MyBaeminActivity : AppCompatActivity() {
         val fragmentMyBaeminFragment = MyBaeminFragment()
         val fragmentMyBaemin2Fragment = MyBaemin2Fragment()
 
-        if(status == "N")
-            transaction.replace(R.id.frameLayout, fragmentMyBaemin2Fragment)
+        if(status == "Y" || mOAuthLoginModule.getState(this@MyBaeminActivity).toString() == "OK")
+            transaction.replace(R.id.frameLayout, fragmentMyBaeminFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
         else
-            transaction.replace(R.id.frameLayout, fragmentMyBaeminFragment)
+            transaction.replace(R.id.frameLayout, fragmentMyBaemin2Fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
     }

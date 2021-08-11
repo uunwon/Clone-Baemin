@@ -10,8 +10,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.nhn.android.naverlogin.OAuthLogin
 import com.yunwoon.clientproejct.databinding.ActivityMyPageBinding
 import com.yunwoon.clientproejct.dialog.ProfiledialogFragment
+import com.yunwoon.clientproejct.naver.AuthLogin
 import com.yunwoon.clientproejct.sharedPreference.MyApplication
 import com.yunwoon.clientproejct.sqlite.DBHelper
 import com.yunwoon.clientproejct.sqlite.MemberDB
@@ -20,6 +22,9 @@ class MyPageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyPageBinding
     private lateinit var dbHelper : DBHelper
+    private lateinit var mOAuthLoginModule : OAuthLogin
+
+    private var naverStatus : Boolean = false
     private var status : String = ""
     private var nickName : String = ""
     private var password : String = ""
@@ -32,6 +37,9 @@ class MyPageActivity : AppCompatActivity() {
         Log.d("생명주기", "MyPage onCreate")
 
         dbHelper = DBHelper(this, "MemberDB", null, 1)
+        mOAuthLoginModule = AuthLogin.init(this@MyPageActivity)
+
+        naverStatus = mOAuthLoginModule.getState(this@MyPageActivity).toString() == "OK"
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowCustomEnabled(true)
@@ -50,19 +58,32 @@ class MyPageActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-        val db = dbHelper.writableDatabase
 
-        status = "N"
-        val values = ContentValues().apply {
-            put(MemberDB.MemberEntry.COLUMN_USER_STATUS, status)
+        if(naverStatus) {
+            mOAuthLoginModule.logoutAndDeleteToken(this@MyPageActivity)
+            Log.i("마이페이지_액티비티", "Login Module State : " + mOAuthLoginModule.getState(this@MyPageActivity).toString())
+
+            MyApplication.prefs.remove("name")
+            MyApplication.prefs.remove("email")
+            MyApplication.prefs.remove("mobile1")
+            MyApplication.prefs.remove("mobile2")
+            MyApplication.prefs.remove("mobile3")
         }
+        else {
+            val db = dbHelper.writableDatabase
 
-        val selection = "${MemberDB.MemberEntry.COLUMN_USER_EMAIL} LIKE ?"
-        val selectionArgs = arrayOf("abc7017@gmail.com")
+            status = "N"
+            val values = ContentValues().apply {
+                put(MemberDB.MemberEntry.COLUMN_USER_STATUS, status)
+            }
 
-        db.update(MemberDB.MemberEntry.TABLE_NAME, values, selection, selectionArgs)
+            val selection = "${MemberDB.MemberEntry.COLUMN_USER_EMAIL} LIKE ?"
+            val selectionArgs = arrayOf("abc7017@gmail.com")
 
-        Log.d("데이터베이스", "사용자 로그인 상태는 $status 로 업데이트 됨")
+            db.update(MemberDB.MemberEntry.TABLE_NAME, values, selection, selectionArgs)
+
+            Log.d("데이터베이스", "사용자 로그인 상태는 $status 로 업데이트 됨")
+        }
 
         finish()
     }
@@ -75,7 +96,7 @@ class MyPageActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_save -> {
-                saveData()
+                // saveData()
                 Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show()
                 return true
             }
@@ -110,14 +131,18 @@ class MyPageActivity : AppCompatActivity() {
         super.onStart()
         Log.d("생명주기", "My page onStart")
 
-        // 사용자 닉네임 가져옴
-        // 읽기 모드로 데이터 저장소 가져옴
-        val db = dbHelper.readableDatabase
-        val cursor = db.rawQuery("select nickName,password from MemberDB where email='abc7017@gmail.com'", null)
+        if(naverStatus)
+            nickName = MyApplication.prefs.getString("name", "이름")
+        else {
+            // 사용자 닉네임 가져옴
+            // 읽기 모드로 데이터 저장소 가져옴
+            val db = dbHelper.readableDatabase
+            val cursor = db.rawQuery("select nickName,password from MemberDB where email='abc7017@gmail.com'", null)
 
-        while(cursor.moveToNext()) {
-            nickName = cursor.getString(0)
-            password = cursor.getString(1)
+            while(cursor.moveToNext()) {
+                nickName = cursor.getString(0)
+                password = cursor.getString(1)
+            }
         }
     }
 
@@ -127,6 +152,13 @@ class MyPageActivity : AppCompatActivity() {
 
         binding.nickNameEditText.setText(MyApplication.prefs.getString("nickName", nickName))
         binding.passwordEditText.setText(MyApplication.prefs.getString("password", ""))
+
+        if(naverStatus) {
+            binding.userEmailTextView.setText(MyApplication.prefs.getString("email", "abc7017@gmail.com"))
+            binding.mobileEditText1.setText(MyApplication.prefs.getString("mobile1","010"))
+            binding.mobileEditText2.setText(MyApplication.prefs.getString("mobile2", "2642"))
+            binding.mobileEditText3.setText(MyApplication.prefs.getString("mobile3","3813"))
+        }
     }
 
     override fun onPause() {
