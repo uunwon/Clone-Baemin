@@ -1,27 +1,64 @@
 package com.yunwoon.clientproejct
 
 import android.content.ContentValues
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.nhn.android.naverlogin.OAuthLogin
+import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.yunwoon.clientproejct.databinding.ActivityLoginBinding
-import com.yunwoon.clientproejct.databinding.ActivityMyBaeminBinding
 import com.yunwoon.clientproejct.sqlite.DBHelper
 import com.yunwoon.clientproejct.sqlite.MemberDB
+import org.json.JSONException
+import org.json.JSONObject
+
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var dbHelper : DBHelper
 
+    private val mOAuthLoginModule = OAuthLogin.getInstance()
+    private val mOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
+        override fun run(success: Boolean) {
+            Log.d("핸들러 작동 확인" , "OAuthLoginHandler 동작")
+            if (success) {
+                Log.d("핸들러 작동 확인" , "OAuthLoginHandler run 성공")
+                val accessToken: String = mOAuthLoginModule.getAccessToken(applicationContext)
+                val refreshToken: String = mOAuthLoginModule.getRefreshToken(applicationContext)
+                val expiresAt: Long = mOAuthLoginModule.getExpiresAt(applicationContext)
+                val tokenType: String = mOAuthLoginModule.getTokenType(applicationContext)
+
+                RequestApiTask(applicationContext, mOAuthLoginModule).execute()
+            } else {
+                Log.d("핸들러 작동 확인" , "OAuthLoginHandler run 실패")
+                val errorCode: String = mOAuthLoginModule.getLastErrorCode(applicationContext).getCode()
+                val errorDesc: String = mOAuthLoginModule.getLastErrorDesc(applicationContext)
+                Toast.makeText(
+                    applicationContext, "errorCode:" + errorCode
+                            + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        //  네이버 아이디로 로그인 인스턴스 초기화
+        mOAuthLoginModule.init(
+            this@LoginActivity
+            , R.string.naver_client_id.toString()
+            , R.string.naver_client_secret.toString()
+            , R.string.naver_client_name.toString()
+        )
 
         dbHelper = DBHelper(this, "MemberDB", null, 1)
 
@@ -42,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.naverButton.setOnClickListener {
-            Toast.makeText(applicationContext, "네아로 구현 #가보자고", Toast.LENGTH_SHORT).show()
             naverLogin()
         }
     }
@@ -90,12 +126,46 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
+    // 네이버 로그인 구현
     private fun naverLogin() {
-        // 네이버 로그인 구현 메서드
+        mOAuthLoginModule.startOauthLoginActivity(this, mOAuthLoginHandler)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Log.d("생명주기", "Login onDestroy")
+    }
+
+    class RequestApiTask(private val context: Context, private val mOAuthLoginModule: OAuthLogin) : AsyncTask<Void, Void, String>() {
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+        }
+
+        override fun doInBackground(vararg p0: Void?): String {
+            // https://openapi.naver.com/v1/nid/me
+            // https://apis.naver.com/nidlogin/nid/getHashId_v2.xml
+            Log.d("핸들러 작동 확인" , "RequestApiTask doInBackground 에 들어옴")
+            val url = "https://openapi.naver.com/v1/nid/me"
+            val at : String = mOAuthLoginModule.getAccessToken(context)
+            return mOAuthLoginModule.requestApi(context, at, url)
+        }
+
+        override fun onPostExecute(result: String) {
+            Log.d("핸들러 작동 확인" , "RequestApiTask onPostExecute 성공")
+            try{
+                val loginResult = JSONObject(result)
+                if(loginResult.getString("resultcode").equals("00")) {
+                    val response : JSONObject = loginResult.getJSONObject("response")
+                    val id : String = response.getString("id")
+                    val email : String = response.getString("email")
+                    Toast.makeText(context, "id = $id , email = $email", Toast.LENGTH_SHORT).show()
+                }
+
+            } catch (e : JSONException) {
+                e.printStackTrace()
+            }
+        }
+
     }
 }
