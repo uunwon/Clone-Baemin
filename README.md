@@ -27,17 +27,17 @@
 * 추 가 예 정 입 니 다 ! 🌈
 
 ### 서비스 화면
-| **Main Activity** | **MyPage Activity** |
+| **Main Activity** | **Center Activity** |
 |:--------------:|:--------------:|
-| <img src="https://user-images.githubusercontent.com/48541984/129127386-1dfd3bfb-73e9-4ec8-8d2b-46227f13ab0e.png" width = "300" /> | <img src="https://user-images.githubusercontent.com/48541984/129130565-c07f28c9-cd21-4114-bc7c-3936fb1c06af.gif" width = "300" /> |
+| <img src="https://user-images.githubusercontent.com/48541984/129127386-1dfd3bfb-73e9-4ec8-8d2b-46227f13ab0e.png" width = "300" /> | <img src="https://user-images.githubusercontent.com/48541984/129130746-39ef8909-2e69-4262-ad4d-e9e1bc68fab9.png" width = "293" /> |
 
-| **Review Activity** | **Address Activity** |
+| **MyPage Activity** | **Address Activity** |
 |:--------------:|:--------------:|
-| <img src="https://user-images.githubusercontent.com/48541984/129130672-e5105f24-8f38-41be-a8a5-d89b28342dfb.gif" width = "300" /> | <img src="https://user-images.githubusercontent.com/48541984/129130493-262310eb-a358-4305-8a37-3fba4685191d.gif" width = "300" /> |
+| <img src="https://user-images.githubusercontent.com/48541984/129130565-c07f28c9-cd21-4114-bc7c-3936fb1c06af.gif" width = "300" /> | <img src="https://user-images.githubusercontent.com/48541984/129130493-262310eb-a358-4305-8a37-3fba4685191d.gif" width = "300" /> |
 
-| **Store Activity** | **Center Activity** |
+| **Review Activity** | **Store Activity** |
 |:--------------:|:--------------:|
-| <img src="https://user-images.githubusercontent.com/48541984/129130545-fb8da3f5-61a8-45f1-85fd-9a4541415604.gif" width = "300" /> | <img src="https://user-images.githubusercontent.com/48541984/129130746-39ef8909-2e69-4262-ad4d-e9e1bc68fab9.png" width = "300" /> |
+| <img src="https://user-images.githubusercontent.com/48541984/129130672-e5105f24-8f38-41be-a8a5-d89b28342dfb.gif" width = "300" /> | <img src="https://user-images.githubusercontent.com/48541984/129130545-fb8da3f5-61a8-45f1-85fd-9a4541415604.gif" width = "300" /> |
 
 ## 서비스 설계
 ### DB 스키마 구조
