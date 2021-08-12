@@ -24,7 +24,19 @@
 * **리뷰**를 작성한 후, 목록을 확인ㆍ수정ㆍ삭제할 수 있습니다.
 
 ### 활용 기술
-* 추 가 예 정 입 니 다 ! 🌈
+* Retrofit 2.9.0
+* RecyclerView with adpater pattern
+* CollapsingToolbarLayout
+* SQLite
+
+### 라이브러리 & 오픈 API
+* Initial tips Library [(Github)](https://github.com/mpetlyuk/initial_tips)
+* Swtich Button iOS version [(Github)](https://github.com/zcweng/SwitchButton)
+* 농림축산식품부 안심식당 오픈 API
+* 국토교통부 도로명주소/지번주소/명칭 검색 API
+* 공공데이터활용지원센터 코로나19 예방접종센터 조회서비스 오픈 API
+* 네이버 아이디로 로그인 Android API
+* Google maps Android API
 
 ### 서비스 화면
 | **Main Activity** | **Center Activity** |
@@ -46,7 +58,6 @@
 
 ### REST API 명세서
 `Google sheets`, `postman` 사용해 명세서 작성  
-<!--img src="https://user-images.githubusercontent.com/48541984/129123646-2291d068-3db5-4dad-ba30-9b9c15848b7c.png" width="70%"/-->
 
 ### 개발환경
 * AWS EC2 / RDS
