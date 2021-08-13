@@ -34,7 +34,7 @@ class CenterActivity : AppCompatActivity(), OnMapReadyCallback {
     private val centerArrayList = ArrayList<CenterItem>()
     private lateinit var centerAdapter: CenterAdapter
 
-    private val key = "BDjQIk0hhjDzdEDbxWaxssyEkO+eo/VsCAO+LUrVKBsO+8QSXAZ0PrEZvnNjFiL/oin4KcihJhQtj2TP2nWl1w=="
+    private val key = BuildConfig.DATA_CENTER_SECRET_KEY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

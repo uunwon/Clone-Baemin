@@ -165,8 +165,4 @@
     <string name="facebook">페이스북으로 로그인</string>
     <string name="naver">네이버로 로그인</string>
     <string name="apple">Apple로 로그인</string>
-
-    <string name="naver_client_id">tNG54ik3vGODvxaqgfPs</string>
-    <string name="naver_client_secret">UjXsdFNyy2</string>
-    <string name="naver_client_name">clone-baemin</string>
 </resources>

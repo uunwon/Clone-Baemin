@@ -32,7 +32,8 @@ class SearchAddressActivity : AppCompatActivity() {
     private val addressItemArrayList = ArrayList<AddressItem>()
     private lateinit var addressAdapter : AddressAdapter
     private lateinit var searchText:String
-    private val key = "0A09C551-ED40-31C2-82B1-190160155472"
+
+    private val key = BuildConfig.DATA_ADDRESS_SECRET_KEY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     compileSdkVersion 29
 
@@ -13,6 +16,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "DATA_CENTER_SECRET_KEY", properties['DATA_CENTER_SECRET_KEY'])
+        buildConfigField("String", "DATA_ADDRESS_SECRET_KEY", properties['DATA_ADDRESS_SECRET_KEY'])
+        buildConfigField("String", "DATA_CLEAN_STORE_SECRET_KEY", properties['DATA_CLEAN_STORE_SECRET_KEY'])
+        buildConfigField("String", "NAVER_CLIENT_SECRET_KEY", properties['NAVER_CLIENT_SECRET_KEY'])
+        buildConfigField("String", "NAVER_CLIENT_ID", properties['NAVER_CLIENT_ID'])
     }
 
     buildTypes {
