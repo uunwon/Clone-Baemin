@@ -126,8 +126,8 @@ class CenterActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
 
-        binding.addressTextView.text = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마")
-        val splitArray = MyApplication.prefs.getString("road", "서울시 마포구 연남동 568-26 연남토마").split(" ")
+        binding.addressTextView.text = MyApplication.prefs.getString("road", "서울특별시 마포구 연남동 568-26 연남토마")
+        val splitArray = MyApplication.prefs.getString("road", "서울특별시 마포구 연남동 568-26 연남토마").split(" ")
         addressText = splitArray[0] // 도 단위로 받아옴
     }
 }

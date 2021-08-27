@@ -18,7 +18,6 @@ import com.yunwoon.clientproejct.sqlite.DBHelper
 import com.yunwoon.clientproejct.sqlite.MemberDB
 import org.json.JSONObject
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
